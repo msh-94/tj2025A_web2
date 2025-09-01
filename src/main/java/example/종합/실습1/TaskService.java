@@ -30,6 +30,7 @@ public class TaskService {// class start
     // [3] 매 5분마다 재고가 10 이하인 상품의 재고를 20개 추가
     @Scheduled( cron = "0 0/5 * * * * ")
     public void plusProduct(){
+        taskDao.plusProduct();
         System.out.println("재고가 10이하인 제품 추가");
     }// func end
 
