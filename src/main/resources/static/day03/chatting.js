@@ -39,26 +39,26 @@ client.onmessage = ( event ) => {
                     <span> ${message.message} </span>
                 </div>`
     }else if(message.type == 'msg'){
-        if(message.from != nickName){
-            html += `<div class="receiveBox">
-                    <div class="profileImg">
-                        <img  src="default.jpg"/>
-                    </div>
-                    <div>
-                        <div class="recontent">
-                            <div class="memberNic"> ${message.from} </div>
-                            <div class="subcontent">
-                                <div class="content"> ${message.message} </div>
-                                <div class="date"> ${message.date} </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`
-        }else{
+        if(message.from == nickName){
             html += `<div class="secontent">
                     <div class="date"> ${message.date} </div>
                     <div class="content"> ${message.message} </div>
                 </div>`
+        }else{            
+            html += `<div class="receiveBox">
+                <div class="profileImg">
+                    <img  src="default.jpg"/>
+                </div>
+                <div>
+                    <div class="recontent">
+                        <div class="memberNic"> ${message.from} </div>
+                        <div class="subcontent">
+                            <div class="content"> ${message.message} </div>
+                            <div class="date"> ${message.date} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
         }// if end        
     }// if end
     // 4-4 구성한 html를 <div class="msgbox">에 추가하기 , 대입 = , 추가 +=
