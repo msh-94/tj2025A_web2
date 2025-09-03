@@ -38,8 +38,9 @@ client.onmessage = ( event ) => {
         html += `<div class="alarm">
                     <span> ${message.message} </span>
                 </div>`
-    }else if(message.type == 'msg' && message.from != nickName){
-        html += `<div class="receiveBox">
+    }else if(message.type == 'msg'){
+        if(message.from != nickName){
+            html += `<div class="receiveBox">
                     <div class="profileImg">
                         <img  src="default.jpg"/>
                     </div>
@@ -53,11 +54,12 @@ client.onmessage = ( event ) => {
                         </div>
                     </div>
                 </div>`
-    }else if(message.type == 'msg' && message.from == nickName){
-        html += `<div class="secontent">
+        }else{
+            html += `<div class="secontent">
                     <div class="date"> ${message.date} </div>
                     <div class="content"> ${message.message} </div>
                 </div>`
+        }// if end        
     }// if end
     // 4-4 구성한 html를 <div class="msgbox">에 추가하기 , 대입 = , 추가 +=
     document.querySelector('.msgbox').innerHTML += html;
