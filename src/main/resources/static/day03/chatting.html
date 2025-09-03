@@ -65,6 +65,7 @@
             padding : 10px;
             border: 1px solid #eeeeee;
         }
+        input:focus {outline:none;}
         /* 전송 버튼 */
         .bottomBox > button{
             width : 15%;
@@ -136,7 +137,7 @@
 
         </div>
         <div class="bottomBox">
-            <input onkeyup="enterKey()" type="text" class=" msginput"/>
+            <input onkeyup="enterKey()" type="text" class=" msginput" placeholder="메시지 입력"/>
             <button type="button" onclick="onMsgSend()">전송</button>
         </div>
     </div>
