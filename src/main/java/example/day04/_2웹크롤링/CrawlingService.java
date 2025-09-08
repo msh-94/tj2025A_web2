@@ -43,23 +43,41 @@ public class CrawlingService { // class start
     public List<Map<String , String>> task2(){
         List<Map<String,String>> list = new ArrayList<>();
         try{
-            String URL = "https://www.yes24.com/product/category/daybestseller?CategoryNumber=001";
-            Document document = Jsoup.connect(URL).get();
-            Elements nameList = document.select(".info_name > .gd_name");
-            Elements priceList = document.select(".txt_num > .yes_b");
-            Elements imgList = document.select(".img_bdr .lazy");
-            for (int i = 0; i < nameList.size(); i++){
-                String name = nameList.get(i).text(); // i번째 책제목 1개씩 호출
-                String price = priceList.get(i).text(); // i번째 책가격 1개씩 호출
-                String img = imgList.get(i).attr("data-original");
-                Map<String,String> map = new HashMap<>();
-                map.put("name" , name);
-                map.put("price",price);
-                map.put("img",img);
-                list.add(map);
+            for (int page = 1; page < 4; page++) {
+                String URL = "https://www.yes24.com/product/category/daybestseller?CategoryNumber=001&pageNumber="+page+"&pageSize=24&type=day";
+                Document document = Jsoup.connect(URL).get();
+                Elements nameList = document.select(".info_name > .gd_name");
+                Elements priceList = document.select(".txt_num > .yes_b");
+                Elements imgList = document.select(".img_bdr .lazy");
+                for (int i = 0; i < nameList.size(); i++) {
+                    String name = nameList.get(i).text(); // i번째 책제목 1개씩 호출
+                    String price = priceList.get(i).text(); // i번째 책가격 1개씩 호출
+                    String img = imgList.get(i).attr("data-original");
+                    Map<String, String> map = new HashMap<>();
+                    map.put("name", name);
+                    map.put("price", price);
+                    map.put("img", img);
+                    list.add(map);
+                }// for end
             }// for end
         } catch (Exception e) { System.out.println("e = " + e); }
         return list;
+    }// func end
+
+    // 3. 다음날씨 정보 https://weather.daum.net/robots.txt *** 동적 페이지 JSOUP 불가능 ***
+    public Map<String,String> task3(){
+        Map<String,String> map = new HashMap<>();
+        try{
+            String URL = "https://weather.daum.net/";
+            Document document = Jsoup.connect(URL).get();
+            System.out.println("document = " + document);
+            Elements elements = document.select(".info_weather .num_deg");
+            System.out.println("elements = " + elements);
+            String weather = elements.text();
+            map.put("weather" , weather);
+            System.out.println("weather = " + weather);
+        } catch (Exception e) { System.out.println("e = " + e); }
+        return map;
     }// func end
 
 }// class end
