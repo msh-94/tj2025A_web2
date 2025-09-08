@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/task/day04")
@@ -16,5 +17,11 @@ public class CrawlingController { // class start
     @GetMapping("/craw1")
     public List<String> task1(){
         return crawlingService.task1();
+    }// func end
+
+    // 2. 상품 정보
+    @GetMapping("/craw2")
+    public List<Map<String , String>> task2(){
+        return crawlingService.task2();
     }// func end
 }// class end

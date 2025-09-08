@@ -7,7 +7,10 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class CrawlingService { // class start
 
@@ -31,6 +34,29 @@ public class CrawlingService { // class start
                 System.out.println("title = " + title);
                 if (title.isBlank()) continue; // 만약 내용이 없으면 다음반복
                 list.add(title);
+            }// for end
+        } catch (Exception e) { System.out.println("e = " + e); }
+        return list;
+    }// func end
+
+    // 2. 상품 정보 : 예스24 , https://www.yes24.com/robots.txt
+    public List<Map<String , String>> task2(){
+        List<Map<String,String>> list = new ArrayList<>();
+        try{
+            String URL = "https://www.yes24.com/product/category/daybestseller?CategoryNumber=001";
+            Document document = Jsoup.connect(URL).get();
+            Elements nameList = document.select(".info_name > .gd_name");
+            Elements priceList = document.select(".txt_num > .yes_b");
+            Elements imgList = document.select(".img_bdr .lazy");
+            for (int i = 0; i < nameList.size(); i++){
+                String name = nameList.get(i).text(); // i번째 책제목 1개씩 호출
+                String price = priceList.get(i).text(); // i번째 책가격 1개씩 호출
+                String img = imgList.get(i).attr("data-original");
+                Map<String,String> map = new HashMap<>();
+                map.put("name" , name);
+                map.put("price",price);
+                map.put("img",img);
+                list.add(map);
             }// for end
         } catch (Exception e) { System.out.println("e = " + e); }
         return list;
