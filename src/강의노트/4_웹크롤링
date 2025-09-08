@@ -28,7 +28,7 @@
             Document document = Jsoup.connect( 크롤링할웹주소 ).get();
 
         2) 특정한 마크업(요소) 가져오기 , 1개일때 : Element / N개일때 : Elements
-            Element element = document.select( "css선택자" );
+            Element element = document.selectFirst( "css선택자" );
             Elements elements = document.select( "css선택자" );
 
         3) 마크업(요소)의 데이터 가져오기
