@@ -85,11 +85,11 @@ public class CrawlingService { // class start
                 if (list.contains( review )) { // [중복방지] 만약에 스크롤 내리고 리스트내 리뷰와  앞전의 리뷰가 포함되면 생략/패스
                     continue;
                 }
-                // 만약에 비어있거나 list에 추가적인 내용이 없으면 2-9 qksqhrans whdfy
                 list.add(review);
             }// for end
-            int endCount = list.size();
-            if (startCount == endCount) break;;
+            // 만약에 비어있거나 list에 추가적인 내용이 없으면
+            int endCount = list.size(); // 크롤링 데이터 변화가 없으면
+            if (startCount == endCount) break;; // 반복문 종료
             // ================= 자바에서 JS 사용 : 스크롤을 내리는 작업 ============ //
             // 2-8 : 자바스크립트 조작하는 객체 , 셀레니움객체를 자바스크립트 실행 객체로 변환
             // document.body( 화면 ) 에서 최하단으로 스크롤 이동
