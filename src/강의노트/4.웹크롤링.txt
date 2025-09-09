@@ -4,7 +4,7 @@
     1) 정적 페이지 : HTML 소스에 데이터가 있는 경우 , 즉] 게시물의 정보가 포함된 HTML
         * Jsoup 라이브러리 사용
     2) 동적 페이지 : JS가 HTML 소스에 데이터를 넣어주는 경우 , 즉] 게시물의 정보가 없는 HTML
-        * Selenium 라이브러리 사용
+        * Selenium(동적/정적) 라이브러리 사용
 3. 목적
     1) 데이터 수집 : 뉴스 , 상품 , 날씨 , 위치 등등
     2) 데이터 분석 : 수집한 자료를 저장 -> 통계 -> 학습(AI) 등등
@@ -36,3 +36,12 @@
 
         4) 마크업(요소)의 속성값 가져오기
             String attr = element.attr("속성명");
+
+[ Selenium ]
+    1. 그레이들 설치 , https://mvnrepository.com/
+        1) 'Selenium' 검색
+            (1) Selenium Java » 4.35.0
+            (2) implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.35.0'
+        2) 'webdrivermanager' 검색
+            (1) WebDriverManager » 6.3.1
+            (2) implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '6.3.1'

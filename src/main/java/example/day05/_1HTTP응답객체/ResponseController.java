@@ -1,4 +1,4 @@
-package example.day05.HTTP_응답객체; // 패키지명
+package example.day05._1HTTP응답객체; // 패키지명
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

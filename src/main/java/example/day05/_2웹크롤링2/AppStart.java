@@ -1,11 +1,11 @@
-package example.day05.HTTP_응답객체;// 패키지명
+package example.day05._2웹크롤링2; // 패키지명
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class AppStart {// class start
-    public static void main(String[] args) {// main start
+    public static void main(String[] args) { // main start
         SpringApplication.run(AppStart.class);
     }// main end
 }// class end

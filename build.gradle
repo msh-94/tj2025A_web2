@@ -36,6 +36,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     // [5] Jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.21.2'
+    // [6] Selenium
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.35.0'
+    // [7] WebDriverManager( 셀레니움 브라우저 매니저 , 크롬 )
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '6.3.1'
 }
 
 tasks.named('test') {
