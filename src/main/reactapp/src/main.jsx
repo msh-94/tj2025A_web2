@@ -22,3 +22,6 @@ const create = createRoot(root);
 import App from './App.jsx';
   // 4-2 렌더링하기
 create.render( <App /> );
+
+// * 2 ~ 4-2 요약가능
+// createRoot( document.querySelector('#root').render( <App /> ));
