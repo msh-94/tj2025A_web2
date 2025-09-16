@@ -19,7 +19,7 @@ export default function Task1( props ){
             </>)
 }// func end
 
-function Profile( props ) {    
+function Profile( props ) { // 함수 목적 : 재사용성 , 중복제거 , 매개변수에 따른 서로 다른 결과물    
     return (<>
             <h2> {props.user.name} </h2>
             <img src={props.user.imageUrl} />
