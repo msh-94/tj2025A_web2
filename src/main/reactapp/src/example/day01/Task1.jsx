@@ -13,17 +13,15 @@ const data = [
 ];
 
 export default function Task1( props ){
-    return (<>
-            <h2> {data[0].name} </h2>
-            <img src={data[0].imageUrl}/>
-            <Profile name = {data[1].name} imageUrl = {data[1].imageUrl}/>
+    return (<>            
+            <Profile user = {data[0]}/>
+            <Profile user = {data[1]}/>
             </>)
 }// func end
 
-function Profile( props ) {
-    const { name , imageUrl } = props
+function Profile( props ) {    
     return (<>
-            <h2> {name} </h2>
-            <img src={imageUrl} />
+            <h2> {props.user.name} </h2>
+            <img src={props.user.imageUrl} />
             </> );
 }// func end
