@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export default function Component7(props){
-    // [1] useState 변수 선언 : 구문 분해 이용한 useState 반환값을 변수화
+    // [1] 예제1 - useState 변수 선언 : 구문 분해 이용한 useState 반환값을 변수화
     // 1. import { useState } from "react"
     // 2. const [ 변수명 , set변수명 ] = useState( 초기값 );
     //  * 변수명은 카멜표기법 , set변수명은 변수명앞에 set 붙인다
@@ -14,7 +14,7 @@ export default function Component7(props){
         setCount( newValue ); // 훅(갈고리 : 특정한 기능을 실행하면 다른 기능들도 실행)
     } 
     const countDel = () => { const newValue = count - 1; setCount( newValue ); }
-
+    // [2] 예제2
     const [ array , setArray ] = useState( ['수박' ] );
     const arrayAdd = () => { 
         // 주의할점은 useSate는 수박을 관리하는게 아니라 수박을 포함하는 [ ] 관리
@@ -23,7 +23,17 @@ export default function Component7(props){
         // setArray( array ); // 불가능
         setArray( [...array] );
     }
-
+    // [3] 예제3 - input입력
+    const [ data , setData ] = useState('');
+    const dataAdd = ( e ) => {
+        // onChange가 실행 되었을때 e(이벤트 결과 정보)가 함수의 매개변수로 전달된다 ( 콜백함수 ) 
+        console.log( e );
+        console.log( e.target ); // onChange가 발동한 마크업 가져오기
+        // vs : document.querySelector('#input');
+        console.log( e.target.value ); // onChange가 발동한 마크업의 입력받은 값 가져오기
+        // ----------- 입력받은 값을 useState 로 변경한다 setXXX()
+        setData( e.target.value );
+    }
     return (
         <>
         <h3> useState 예제1 : { count } </h3>
@@ -31,6 +41,9 @@ export default function Component7(props){
         <button onClick={ countDel }> count감소 </button>
         <h3> useState 예제2 : { array } </h3>
         <button onClick={ arrayAdd }> 과일추가 </button>
+        <h3> useState 예제3 : </h3>
+        <input value={ data } onChange={ dataAdd } />
+        <input value={ data } onChange={ (e) => { setData( e.target.value ); } } />
         </>
     )
 }// func end
