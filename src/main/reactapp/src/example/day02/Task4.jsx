@@ -13,7 +13,10 @@ export default function Task4( props ){
     const listAdd = () => {
         const obj = { num : num+1 , name , phone , age }
         array.push(obj);
-        setArray([...array]);        
+        setArray([...array]);    
+        setName('');
+        setPhone('');
+        setAge('');    
     }
     const listDel = (num) => {
         for(let i = 0; i < array.length; i++ ){
@@ -25,20 +28,20 @@ export default function Task4( props ){
     }
     return (
         <>
-        <div class="wrap">
-            <h2 class='title'> 전화번호부 </h2>
-            <input placeholder="성명" onChange={ (e) => { setName( e.target.value ); } }/> 
-            <input placeholder="연락처 (예:010-1234-5678)" onChange={ (e) => { setPhone( e.target.value ); } }/>
-            <input placeholder="나이" onChange={ (e) => { setAge( parseInt(e.target.value) ); } }/>
-            <button class='addBtn' onClick={ listAdd }> 등록 </button>
-            <ul class="listBox">
+        <div className="wrap">
+            <h2 className='titleName'> 전화번호부 </h2>
+            <input placeholder="성명" value={name} onChange={ (e) => { setName( e.target.value ); } }/> 
+            <input placeholder="연락처 (예:010-1234-5678)" value={phone} onChange={ (e) => { setPhone( e.target.value ); } }/>
+            <input placeholder="나이" value={age} onChange={ (e) => { setAge( parseInt(e.target.value) ); } }/>
+            <button className='addBtn' onClick={ listAdd }> 등록 </button>
+            <ul className="listBox">
                 { array.map( ( info ) => {
                     return  <li><div><span>성명</span>: {info.name} <span>연락처</span>: {info.phone} <span>나이</span>: {info.age}</div> 
-                    <div><button class="delBtn" onClick={ ()=>{ listDel(info.num); } }> 삭제 </button></div></li> 
+                    <div><button className="delBtn" onClick={ ()=>{ listDel(info.num); } }> 삭제 </button></div></li> 
                 }) }
                 
             </ul>
-            <div class="countBox">총 {array.length}명</div>
+            <div className="countBox">총 {array.length}명</div>
         </div>        
         </>
     )
