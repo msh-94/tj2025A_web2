@@ -11,7 +11,7 @@ export default function Task4( props ){
     ]
     const [ array , setArray ] = useState(list);
     const listAdd = () => {
-        const obj = { num : num+1 , name , phone , age }
+        const obj = { num : num++ , name , phone , age }
         array.push(obj);
         setArray([...array]);    
         setName('');
