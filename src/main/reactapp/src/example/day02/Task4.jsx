@@ -1,10 +1,10 @@
 import { useState } from "react"
 import './Task.css';
-let num = 2;
+let num = 3;
 export default function Task4( props ){
     const [ name , setName ] = useState('');
     const [ phone , setPhone ] = useState('');
-    const [ age , setAge ] = useState(0);
+    const [ age , setAge ] = useState('');
     const list = [{ num : 0 , name : '신동엽' , phone : '010-7894-7894' , age : 50 } ,
                     { num : 1,  name : '강호동' , phone : '010-4321-4321' , age : 40 } ,
                     { num : 2 , name : '유재석' , phone : '010-1234-1234' , age : 30 }
@@ -19,12 +19,13 @@ export default function Task4( props ){
         setAge('');    
     }
     const listDel = (num) => {
-        for(let i = 0; i < array.length; i++ ){
-            if( i == num ){
-                array.splice( num , 1 );
-                setArray([...array]);
-            }// if end
-        }// for end
+        setArray(array.filter((info) => info.num !== num)); // react 권장박식
+        // for(let i = 0; i < array.length; i++ ){
+        //     if( i == num ){
+        //         array.splice( num , 1 );
+        //         setArray([...array]);
+        //     }// if end
+        // }// for end
     }
     return (
         <>
@@ -36,7 +37,7 @@ export default function Task4( props ){
             <button className='addBtn' onClick={ listAdd }> 등록 </button>
             <ul className="listBox">
                 { array.map( ( info ) => {
-                    return  <li><div><span>성명</span>: {info.name} <span>연락처</span>: {info.phone} <span>나이</span>: {info.age}</div> 
+                    return  <li key={info.num}><div><span>성명</span>: {info.name} <span>연락처</span>: {info.phone} <span>나이</span>: {info.age}</div> 
                     <div><button className="delBtn" onClick={ ()=>{ listDel(info.num); } }> 삭제 </button></div></li> 
                 }) }
                 
