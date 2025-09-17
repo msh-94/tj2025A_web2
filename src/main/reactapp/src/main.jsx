@@ -39,4 +39,8 @@ import Task2 from './example/day01/Task2.jsx';
 // create.render( <Component2/> );
 // create.render( <Component3/> );
 // create.render( <Task1/> );
-create.render( <Task2/> );
+// create.render( <Task2/> );
+
+// day02
+import Component4 from './example/day02/Component4.jsx';
+create.render( <Component4 /> )
