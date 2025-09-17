@@ -37,4 +37,4 @@ function SubSubComp( props ){
         <h6> 지역변수 count : { count } / 전역변수 count2 : { count2 } </h6>
         </>
     )
-}// func end
+}// func end : H T(문자열)ML 불변성(리터럴) 특징
