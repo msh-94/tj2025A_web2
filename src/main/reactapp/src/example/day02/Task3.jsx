@@ -5,7 +5,7 @@ export default function Task3( props ){
     const [ stock , setStock ] = useState(0);
     return (
         <>
-        <input value={ data } onChange={ (e) => { setData( e.target.value ); } }/>
+        제품명 : <input value={ data } onChange={ (e) => { setData( e.target.value ); } }/>
         <h4> 현재 수량 : { stock } </h4>
         <button onClick={ () => { setStock( stock - 1 ); }}> 감소 </button>
         <button onClick={ () => { setStock( stock + 1 ); }}> 증가 </button>        
