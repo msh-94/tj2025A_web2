@@ -28,29 +28,32 @@ const create = createRoot(root);
 // createRoot( document.querySelector('#root').render( <App /> ));
 
 // day01
-import Component1 from './example/day01/Component1.jsx';
-import Component2 from './example/day01/Component2.jsx';
-import Component3 from './example/day01/Component3.jsx';
-import Task1 from './example/day01/Task1.jsx';
-import Task2 from './example/day01/Task2.jsx';
-
 // *** render 1번만 가능하다 ***
+import Component1 from './example/day01/Component1.jsx';
 // create.render( <Component1/> );
+import Component2 from './example/day01/Component2.jsx';
 // create.render( <Component2/> );
+import Component3 from './example/day01/Component3.jsx';
 // create.render( <Component3/> );
+import Task1 from './example/day01/Task1.jsx';
 // create.render( <Task1/> );
+import Task2 from './example/day01/Task2.jsx';
 // create.render( <Task2/> );
 
 // day02
 import Component4 from './example/day02/Component4.jsx';
-import Component5 from './example/day02/Component5.jsx';
-import Component6 from './example/day02/Component6.jsx';
-import Component7 from './example/day02/Component7.jsx';
-import Task3 from './example/day02/task3.jsx';
-import Task4 from './example/day02/Task4.jsx';
 // create.render( <Component4 /> );
+import Component5 from './example/day02/Component5.jsx';
 // create.render( <Component5 /> );
+import Component6 from './example/day02/Component6.jsx';
 // create.render( <Component6 /> );
+import Component7 from './example/day02/Component7.jsx';
 // create.render( <Component7 /> );
+import Task3 from './example/day02/task3.jsx';
 // create.render( <Task3 /> );
-create.render( <Task4 /> );
+import Task4 from './example/day02/Task4.jsx';
+// create.render( <Task4 /> );
+
+// day03
+import Component8 from './example/day03/Component8.jsx';
+create.render( <Component8 /> );
