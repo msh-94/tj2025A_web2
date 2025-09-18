@@ -83,3 +83,16 @@ INSERT INTO board (bcontent, bwriter) VALUES ('오늘도 화이팅!', '리사');
 INSERT INTO board (bcontent, bwriter) VALUES ('운전 조심하세요~', '태연');
 
 select * from board;
+-- --------------------------------------- Task5 ----------------------------------------
+create table task(
+        tno int auto_increment , 
+    tname varchar(10) not null ,
+    tphone varchar(30) not null ,
+    tage int not null ,
+    constraint primary key(tno)
+);
+insert into task (tname , tphone , tage ) values
+( '신동엽' , '010-7894-7894' , 50 ),
+( '강호동' , '010-4321-4321' , 40 ),
+( '유재석' , '010-1234-1234' , 30 ); 
+select * from task;
