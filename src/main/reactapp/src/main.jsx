@@ -60,4 +60,6 @@ import Component8 from './example/day03/Component8.jsx';
 import Component9 from './example/day03/Component9.jsx';
 // create.render( <Component9 /> );
 import Component10 from './example/day03/Component10.jsx';
-create.render( <Component10 /> );
+// create.render( <Component10 /> );
+import Task5 from './example/day03/Task5.jsx';
+create.render( <Task5 /> );
