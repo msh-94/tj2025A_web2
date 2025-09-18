@@ -73,8 +73,8 @@ export default function Component10( props ){
             <ul>
                 { list.map( (b) => {
                     return <li key={ b.bno }>
-                        <span>내용</span> : {b.bcontent}
-                        <span>작성자</span> : {b.bwriter}
+                        <span>내용 :</span> {b.bcontent}
+                        <span>작성자 :</span> {b.bwriter}
                         <button onClick={ () => { onUpdate(b.bcontent , b.bno ) } }> 수정 </button>
                         <button onClick={ () => { onDelete(b.bno) } }> 삭제 </button>
                     </li>
