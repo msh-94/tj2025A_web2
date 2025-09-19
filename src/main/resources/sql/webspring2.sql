@@ -96,3 +96,25 @@ insert into task (tname , tphone , tage ) values
 ( '강호동' , '010-4321-4321' , 40 ),
 ( '유재석' , '010-1234-1234' , 30 ); 
 select * from task;
+
+-- --------------------------------------- 영화플랫폼 ----------------------------------------
+create table movie(
+        mno int auto_increment , 
+    mtitle varchar(30) not null ,
+    direc varchar(20) not null ,
+    genre varchar(10) not null ,
+    comment varchar(100) not null ,
+    mpwd int not null unique ,
+    constraint primary key(mno)
+);
+select * from movie;
+-- --------------------------------------- 토론글 ----------------------------------------
+create table disboard(
+        dno int auto_increment , 
+    dcontent longtext not null ,    
+    dpwd int not null unique ,
+    mno int ,
+    constraint primary key(dno) ,
+    constraint foreign key(mno) references movie(mno)
+);
+select * from disboard;
