@@ -8,7 +8,6 @@ export default function Movie( props ){
     const [ comment , setComment ] = useState('');
     const [ mpwd , setMpwd ] = useState('');
     const [ list , setList ] = useState([ ]);
-    const [ isOpen , setIsOpen ] = useState(false);
     const [selectedMno, setSelectedMno] = useState('');
     // [1] 등록
     const movieAdd = async () => {
@@ -52,30 +51,32 @@ export default function Movie( props ){
     
     return (
         <>
-        <div>
-            <h3> 영화 플랫폼 </h3>
+        <div className="wrap">
+            <div>
+                <h3 className="titleName"> 영화 플랫폼 </h3>
+            </div>
+            <div>
+                <input placeholder="제목" value={mtitle} onChange={ (e) => { setMtitle(e.target.value); } }/>
+                <input placeholder="감독" value={direc} onChange={ (e) => { setDirec(e.target.value); } }/>
+                <input placeholder="장르" value={genre} onChange={ (e) => { setGenre(e.target.value); } }/>
+                <input placeholder="소개" value={comment} onChange={ (e) => { setComment(e.target.value); } }/>
+                <input placeholder="비밀번호" value={mpwd} onChange={ (e) => { setMpwd(e.target.value); } }/>
+                <button className="addBtn" onClick={ movieAdd }> 등록 </button>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>번호</th><th>제목</th><th>감독</th><th>장르</th><th>소개</th><th>삭제</th></tr>
+                </thead>
+                <tbody>
+                    { list.map( (m) => {
+                        return <tr key={m.mno} onClick={() => setSelectedMno(selectedMno === m.mno ? null : m.mno)}>
+                            <td>{m.mno}</td><td>{m.mtitle}</td><td>{m.direc}</td><td>{m.genre}</td><td>{m.comment}</td>
+                            <td><button className="delBtn" onClick={ (e) => {e.stopPropagation();movieDelete(m.mno , m.mpwd)}}> 삭제 </button></td></tr>
+                    }) }
+                </tbody>
+            </table>
+            {selectedMno && <Find mno={selectedMno}  onClose={() => setSelectedMno(null)} />}
         </div>
-        <div>
-            <input placeholder="제목" value={mtitle} onChange={ (e) => { setMtitle(e.target.value); } }/>
-            <input placeholder="감독" value={direc} onChange={ (e) => { setDirec(e.target.value); } }/>
-            <input placeholder="장르" value={genre} onChange={ (e) => { setGenre(e.target.value); } }/>
-            <input placeholder="소개" value={comment} onChange={ (e) => { setComment(e.target.value); } }/>
-            <input placeholder="비밀번호" value={mpwd} onChange={ (e) => { setMpwd(e.target.value); } }/>
-            <button onClick={ movieAdd }> 등록 </button>
-        </div>
-        <table>
-            <thead>
-                <tr><th>번호</th><th>제목</th><th>감독</th><th>장르</th><th>소개</th><th>삭제</th></tr>
-            </thead>
-            <tbody>
-                { list.map( (m) => {
-                    return <tr key={m.mno} onClick={() => setSelectedMno(selectedMno === m.mno ? null : m.mno)}>
-                        <td>{m.mno}</td><td>{m.mtitle}</td><td>{m.direc}</td><td>{m.genre}</td><td>{m.comment}</td>
-                        <td><button onClick={ (e) => {e.stopPropagation();movieDelete(m.mno , m.mpwd)}}> 삭제 </button></td></tr>
-                }) }
-            </tbody>
-        </table>
-        {selectedMno && <Find mno={selectedMno}  onClose={() => setSelectedMno(null)} />}
         </>
     )
 }// func end
@@ -120,14 +121,14 @@ function Find( {mno , onClose} ){
     }// func end
     return (
         <>        
-        <h3> 상세 페이지 </h3>
+        <h3 className="titleName"> 상세 페이지 </h3>
         <div>
             <div>
                 <input placeholder="내용" value={dcontent} onChange={ (e) => {setDcontent( e.target.value ); }}/>
                 <input placeholder="비밀번호" value={dpwd} onChange={ (e) => {setDpwd( e.target.value ); }}/>
-                <button onClick={ disBoardAdd }> 등록 </button>
+                <button className="addBtn" onClick={ disBoardAdd }> 등록 </button>
             </div>
-            <table>
+            <table className="reviewBox">
                 <thead>
                     <tr>
                         <th>번호</th><th>내용</th><th>비고</th>
@@ -138,13 +139,13 @@ function Find( {mno , onClose} ){
                         review.map( (r) => {
                             return <tr key={r.dno}>
                                 <td>{r.dno}</td><td>{r.dcontent}</td>
-                                <td><button onClick={ () => {disBoardDelete(r.dno ,r.dpwd)}}> 삭제 </button></td>
+                                <td><button className="delBtn" onClick={ () => {disBoardDelete(r.dno ,r.dpwd)}}> 삭제 </button></td>
                             </tr>
                         })
                     }
                 </tbody>
             </table>
-            <button onClick={onClose}> 닫기 </button>
+            <button className="closeBtn" onClick={onClose}> 닫기 </button>
         </div>        
         </>
     )
