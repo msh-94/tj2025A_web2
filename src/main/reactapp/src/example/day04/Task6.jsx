@@ -65,22 +65,23 @@ function SignUp( props ){
 
 // [3] 로그인 페이지
 function Login( props ){
-    const idRef = useRef(null);
-    const pwdRef = useRef(null);
     const navigate = useNavigate();
-    const logIn = () => {
-        const mid = idRef.current.value;
-        const mpwd = pwdRef.current.value;
-        const obj = { mid , mpwd }
+    const formRef = useRef(null);
+    const logIn = () => { 
+        const mid = formRef.current.elements['mid'].value;
+        const mpwd = formRef.current.elements['mpwd'].value;
+        const obj = { mid , mpwd }       
         alert('로그인 성공');
-        navigate('/');
-    }
+        navigate('/');       
+    }// func end
     return(
         <>
             <h3> 로그인 페이지 </h3>
-                <input ref={idRef} placeholder="아이디"/><br/>
-                <input ref={pwdRef} placeholder="비밀번호"/><br/>
+            <form ref={formRef}>
+                <input name="mid" placeholder="아이디"/><br/>
+                <input name="mpwd" placeholder="비밀번호"/><br/>
                 <button onClick={logIn} type="button"> 로그인 </button>
+            </form>
         </>
     )
 }// func end
