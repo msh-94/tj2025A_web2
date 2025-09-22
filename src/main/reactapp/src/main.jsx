@@ -49,9 +49,9 @@ import Component6 from './example/day02/Component6.jsx';
 // create.render( <Component6 /> );
 import Component7 from './example/day02/Component7.jsx';
 // create.render( <Component7 /> );
-import Task3 from './example/day02/task3.jsx';
+// import Task3 from './example/day02/task3.jsx';
 // create.render( <Task3 /> );
-import Task4 from './example/day02/Task4.jsx';
+// import Task4 from './example/day02/Task4.jsx';
 // create.render( <Task4 /> );
 
 // day03
@@ -61,13 +61,15 @@ import Component9 from './example/day03/Component9.jsx';
 // create.render( <Component9 /> );
 import Component10 from './example/day03/Component10.jsx';
 // create.render( <Component10 /> );
-import Task5 from './example/day03/Task5.jsx';
+// import Task5 from './example/day03/Task5.jsx';
 // create.render( <Task5 /> );
 
 // day04
-import Movie from './example/day04/movie.jsx';
+// import Movie from './example/day04/movie.jsx';
 // create.render( <Movie /> );
 import Component11 from './example/day04/Component11.jsx';
 // create.render( <Component11 /> );
 import Component12 from './example/day04/Component12.jsx';
-create.render( <Component12 /> );
+// create.render( <Component12 /> );
+import Task6 from './example/day04/Task6.jsx';
+create.render( <Task6 /> ); 
