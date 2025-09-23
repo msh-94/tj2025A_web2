@@ -12,5 +12,8 @@
             createSlice()
         3) Reducer(리듀서) : 상태를 변경하는 함수
         4) action(액션) : 상태를 변경하기 위한 store에 보내는 함수
-
-        일반컴포넌트 --action--> Reducer --> Store --> 컴포넌트 
+    5. 실행순서
+        1) 일반(login페이지)컴포넌트 에서 action 먼저 실행된다
+            dispatch( login() )
+        2) action이 store 에 전달된다 dispatch
+        3) store 에 등록된 리듀서를 찾아서 state 업데이트 한다
