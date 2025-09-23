@@ -19,14 +19,11 @@ export default function Header( props ){
         <>
         <h3> 헤더 </h3>
         <ul>
+            <li><Link to="/">홈</Link></li>
             { isAuthenticated ?
-                <>
-                <li><Link to="/">홈</Link></li>
-                <li><Link to="/profile">프로필</Link></li>
-                <button onClick={logoutPatch}> 로그아웃 </button></> : <>
-                <li><Link to="/">홈</Link></li>
-                <li><Link to="/login">로그인</Link></li>
-                </>                
+                <><li><Link to="/profile">프로필</Link></li>
+                <button onClick={logoutPatch}> 로그아웃 </button></> : 
+                <><li><Link to="/login">로그인</Link></li></>                
             }
             
         </ul>
