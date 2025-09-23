@@ -10,7 +10,9 @@ export default function LoginPage( props ){
     // [3] 로그인처리
     const loginPatch = () => {
             alert('로그인 성공');
-            dispatch( login() );
+            // dispatch( login() );
+            const obj = { id : 3 , name : "유재석" } // login 액션에 보낼 데이터
+            dispatch( login(obj) );
             navigate("/");
         }// func end
     return (
