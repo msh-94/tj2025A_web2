@@ -13,7 +13,7 @@ export default function Header( props ){
     const logoutPatch = () => {
         alert('로그아웃 성공');
         dispatch( logout() );
-        navigate("/");
+        navigate("/login");
     }// func end
     return (
         <>
@@ -22,10 +22,9 @@ export default function Header( props ){
             <li><Link to="/">홈</Link></li>
             { isAuthenticated ?
                 <><li><Link to="/profile">프로필</Link></li>
-                <button onClick={logoutPatch}> 로그아웃 </button></> : 
+                <li><button onClick={logoutPatch}> 로그아웃 </button></li></> : 
                 <><li><Link to="/login">로그인</Link></li></>                
-            }
-            
+            }            
         </ul>
         </>
     )
