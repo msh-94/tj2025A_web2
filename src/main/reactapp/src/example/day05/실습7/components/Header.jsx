@@ -11,6 +11,7 @@ export default function Header( props ){
     const navigate = useNavigate(); 
     // [4] 로그아웃 처리
     const logoutPatch = () => {
+        alert('로그아웃 성공');
         dispatch( logout() );
         navigate("/");
     }// func end
