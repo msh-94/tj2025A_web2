@@ -13,7 +13,7 @@ import userSlice from './userStore';
 import storage from 'redux-persist/lib/storage'; // localStorage 사용
 import storageSession from 'redux-persist/lib/storage/session'; // session 사용
 // const persistConfig = { ket : 'key이름' , storage }
-const persistConfig = { ket : 'user' , storage } // localStorage 에 'user' 라는 이름으로 상태 저장
+const persistConfig = { key : 'user' , storage } // localStorage 에 'user' 라는 이름으로 상태 저장
 
 // [5] 리듀서에 persist 설정 적용
 import { persistStore , persistReducer } from 'redux-persist';
