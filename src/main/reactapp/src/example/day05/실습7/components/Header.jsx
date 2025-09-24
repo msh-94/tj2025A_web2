@@ -16,6 +16,7 @@ export default function Header( props ){
         dispatch( logout() );
         navigate("/login");
     }// func end
+    // 서버에게 로그인 상태 요청 useEffect( () => {} , [] );
     return (
         <>
         <h3> 헤더 </h3>
