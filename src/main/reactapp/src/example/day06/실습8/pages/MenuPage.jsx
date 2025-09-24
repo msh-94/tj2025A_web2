@@ -2,7 +2,12 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { countAdd } from '../store/cartSlice'
 
-export default function MenuPage( props ){
+export default function MenuPage( props ){    
+    const sample = [
+        { id: 1, name: "아메리카노", price: 3000 }, 
+        { id: 2, name: "카페라떼", price: 4000 },
+        { id: 3, name: "카푸치노", price: 4500 }
+    ]
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const shopping = (id , name ,price ) => {
@@ -19,24 +24,11 @@ export default function MenuPage( props ){
         <>
         <h3> 제품메뉴 페이지 </h3>
         <ul>
-            <li>
-                제품번호 : <span>1</span>
-                제품명 : <span>아메리카노</span>
-                가격 : <span>3000</span>
-                <button onClick={ () => {shopping(1,"아메리카노",3000)}}> 담기 </button>
-            </li>
-            <li>
-                제품번호 : <span>2</span>
-                제품명 : <span>카페라떼</span>
-                가격 : <span>4000</span>
-                <button onClick={ () => {shopping(2,"카페라떼",4000)}}> 담기 </button>
-            </li>
-            <li>
-                제품번호 : <span>3</span>
-                제품명 : <span>카푸치노</span>
-                가격 : <span>4500</span>
-                <button onClick={ () => {shopping(3,"카푸치노",4500)}}> 담기 </button>
-            </li>
+            {
+                sample.map( (s) => {
+                    return <li key={s.id}> 제품명 : {s.name} 가격 : {s.price} <button onClick={ (e) => { shopping(s.id,s.name,s.price) }}> 담기 </button></li>
+                })
+            }
         </ul>
         </>
     )
