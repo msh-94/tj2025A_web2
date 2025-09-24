@@ -17,6 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 class AopClass{
     // [4-1] 애플리케이션 내 AopService내 모든 메소드가 실행되면 같이 실행
     // @Before("execution( 경로와 조건 )")
+    // * : 모든 리턴 타입의 메소드들
+    // java 이하경로부터 : 적용할 메소드가 위치한 패키지/파일 경로
+        // -> 같은패키지 : 클래스명만 작성 AopService
+        // -> 다른패키지 : example.day08.AopService
+    // .메소드명
+        // .* : 해당 클래스내 모든 메소드에 적용
+        // .enter1 : 해당 클래스내 enter1 메소드에 적용
+    // ( 매개변수 )
+        // .(..) : 해당 메소드의 모든 매개변수 를 갖는곳에 적용
+        // .enter1( int , boolean ) : 지정한 매개변수를 갖는 메소드만 적용
     @Before("execution( * AopService.*(..) )")
     public void check1(){
         System.out.println("[코로나] 열 체크");
