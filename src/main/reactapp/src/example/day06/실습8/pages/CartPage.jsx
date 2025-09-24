@@ -15,7 +15,7 @@ export default function CartPage( props ){
         <div>
             <div>총 개수 : <p> {count}개 </p></div>            
             <ul>
-                { cartInfo.map( ( c ) => {
+                {cartInfo.map( ( c ) => {
                     return <li key={c.id}>제품명 : {c.name} 가격 : {c.price}</li>                    
                 })}                
             </ul>
