@@ -5,11 +5,11 @@ import { countAdd } from '../store/cartSlice'
 export default function MenuPage( props ){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const shopping = (id ,name , price) => {
-        const obj = { id, name , price }
+    const shopping = (id , name ,price ) => {
+        const obj = { id , name , price  }
         dispatch( countAdd(obj) );
-        confirm("장바구니로 이동하시겠습니까?");
-        if(confirm){
+        const check = confirm("장바구니로 이동하시겠습니까?");
+        if(check){
             navigate("/cart");
         }else{
             navigate("/menu");
@@ -35,7 +35,7 @@ export default function MenuPage( props ){
                 제품번호 : <span>3</span>
                 제품명 : <span>카푸치노</span>
                 가격 : <span>4500</span>
-                <button onClick={ () => {shopping(1,"카푸치노",4500)}}> 담기 </button>
+                <button onClick={ () => {shopping(3,"카푸치노",4500)}}> 담기 </button>
             </li>
         </ul>
         </>

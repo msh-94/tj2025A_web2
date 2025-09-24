@@ -5,7 +5,11 @@ export default function CartPage( props ){
     const totalPrice = () => {
         let total = 0;
         for(let i = 0; i < cartInfo.length; i++){
-            total += cartInfo[i].price;
+            if(cartInfo[i].amount == 1){
+                total += cartInfo[i].price;
+            }else{
+                total += cartInfo[i].price * cartInfo[i].amount;
+            }// if end            
         }// for end
         return total;
     }// func end
@@ -16,11 +20,11 @@ export default function CartPage( props ){
             <div>총 개수 : <p> {count}개 </p></div>            
             <ul>
                 {cartInfo.map( ( c ) => {
-                    return <li key={c.id}>제품명 : {c.name} 가격 : {c.price}</li>                    
+                    return <li key={c.id}>제품명 : {c.name} 가격 : {c.price} 개수 {c.amount}</li>                    
                 })}                
             </ul>
-            <div>총 금액 : <p> {totalPrice}원 </p></div>            
+            <div>총 금액 : <p> {totalPrice()}원 </p></div>            
         </div>
         </>
     )
-}// func 
+}// func end
