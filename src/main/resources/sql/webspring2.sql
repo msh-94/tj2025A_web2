@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS springweb2;
 CREATE DATABASE springweb2;
 USE springweb2;
 
+
 -- --------------------------------------- 실습1 ----------------------------------------
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT, -- 상품 ID (자동 증가)
@@ -35,13 +36,13 @@ INSERT INTO student (name, kor, math) VALUES ('최유리', 88, 82);
 
 -- --------------------------------------- day07 boardService13 ----------------------------------------
 create table board(
-        bno int auto_increment , 
+    bno int auto_increment ,
     bcontent longtext not null ,
     bwriter varchar(30) not null ,
     constraint primary key(bno)
 );
 
-# 샘플 
+# 샘플
 INSERT INTO board (bcontent, bwriter) VALUES ('안녕하세요', '유재석');
 INSERT INTO board (bcontent, bwriter) VALUES ('오늘도 좋은 하루 되세요!', '김태호');
 INSERT INTO board (bcontent, bwriter) VALUES ('점심 뭐 드셨나요?', '박명수');
@@ -83,38 +84,49 @@ INSERT INTO board (bcontent, bwriter) VALUES ('오늘도 화이팅!', '리사');
 INSERT INTO board (bcontent, bwriter) VALUES ('운전 조심하세요~', '태연');
 
 select * from board;
--- --------------------------------------- Task5 ----------------------------------------
-create table task(
-        tno int auto_increment , 
-    tname varchar(10) not null ,
-    tphone varchar(30) not null ,
-    tage int not null ,
-    constraint primary key(tno)
-);
-insert into task (tname , tphone , tage ) values
-( '신동엽' , '010-7894-7894' , 50 ),
-( '강호동' , '010-4321-4321' , 40 ),
-( '유재석' , '010-1234-1234' , 30 ); 
-select * from task;
 
--- --------------------------------------- 영화플랫폼 ----------------------------------------
-create table movie(
-        mno int auto_increment , 
-    mtitle varchar(30) not null ,
-    direc varchar(20) not null ,
-    genre varchar(10) not null ,
-    comment varchar(100) not null ,
-    mpwd int not null unique ,
-    constraint primary key(mno)
+-- --------------------------------------- day09 boardService13 ----------------------------------------
+CREATE TABLE trans(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    money INT UNSIGNED DEFAULT 0
 );
-select * from movie;
--- --------------------------------------- 토론글 ----------------------------------------
-create table disboard(
-        dno int auto_increment , 
-    dcontent longtext not null ,    
-    dpwd int not null unique ,
-    mno int ,
-    constraint primary key(dno) ,
-    constraint foreign key(mno) references movie(mno)
-);
-select * from disboard;
+
+-- 데이터 삽입
+INSERT INTO trans (name, money) VALUES 
+('신동엽', 200000),
+('서장훈', 200000);
+select * from trans;
+
+    -- 1. 책 테이블
+    CREATE TABLE books (
+        id INT NOT NULL auto_increment,
+        title VARCHAR(255) NOT NULL,
+        stock INT NOT NULL DEFAULT 0,
+        PRIMARY KEY (id)
+    );
+
+    -- 2. 대출 기록 테이블
+    CREATE TABLE rentals (
+        id INT NOT NULL auto_increment,
+        book_id INT NOT NULL,
+        member VARCHAR(100) NOT NULL,
+        rent_date DATETIME DEFAULT NOW(),
+        return_date DATETIME NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (book_id) REFERENCES books(id)
+    );
+
+    -- 3. 샘플 데이터 (책 목록)
+    INSERT INTO books (id, title, stock) VALUES (1, '자바의 정석', 3);
+    INSERT INTO books (id, title, stock) VALUES (2, '스프링 인 액션', 2);
+    INSERT INTO books (id, title, stock) VALUES (3, '토비의 스프링', 1);
+    INSERT INTO books (id, title, stock) VALUES (4, '리액트 교과서', 5);
+
+    -- 4. 샘플 데이터 (대출 기록)
+    INSERT INTO rentals (id, book_id, member) VALUES (1, 1, '홍길동');
+
+    -- 5. 확인용 조회 쿼리
+    SELECT * FROM books;
+    SELECT * FROM rentals;
+

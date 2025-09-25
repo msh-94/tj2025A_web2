@@ -19,6 +19,6 @@ public interface BookMapper { // interface start
     @Update( "update books set stock = stock + 1 where id = #{id} " )
     public boolean bookPlus(int id);
     // 2-2
-    @Update( "update rentals set return_date = #{return_date} where return_date IS NULL and id = #{id}")
+    @Update( "update rentals set return_date = #{return_date} where return_date IS NULL and book_id = #{book_id} and member = #{member}")
     public boolean bookReturn(RentalsDto dto);
 }// interface end
