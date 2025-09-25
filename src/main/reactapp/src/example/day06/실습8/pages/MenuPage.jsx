@@ -26,7 +26,7 @@ export default function MenuPage( props ){
         <ul>
             {
                 sample.map( (s) => {
-                    return <li key={s.id}> 제품명 : {s.name} 가격 : {s.price} <button onClick={ (e) => { shopping(s.id,s.name,s.price) }}> 담기 </button></li>
+                    return <li key={s.id}> 제품명 : {s.name} 가격 : {s.price}원 <button onClick={ (e) => { shopping(s.id,s.name,s.price) }}> 담기 </button></li>
                 })
             }
         </ul>

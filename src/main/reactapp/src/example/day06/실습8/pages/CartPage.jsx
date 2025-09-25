@@ -17,13 +17,13 @@ export default function CartPage( props ){
         <>
         <h3> 장바구니 페이지 </h3>
         <div>
-            <div>총 개수 : <p> {count}개 </p></div>            
+            <div>총 개수 : <span> {count}개 </span></div>            
             <ul>
                 {cartInfo.map( ( c ) => {
-                    return <li key={c.id}>제품명 : {c.name} 가격 : {c.price} 개수 {c.amount}</li>                    
+                    return <li key={c.id}>제품명 : {c.name} 가격 : {c.price}원 개수 {c.amount}개</li>                    
                 })}                
             </ul>
-            <div>총 금액 : <p> {totalPrice()}원 </p></div>            
+            <div>총 금액 : <span> {totalPrice()}원 </span></div>            
         </div>
         </>
     )
