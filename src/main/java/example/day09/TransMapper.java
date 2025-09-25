@@ -17,6 +17,6 @@ public interface TransMapper { // class start
     @Update( "update trans set money = money + #{money} where name = #{name} " )
     public boolean deposit( String name , int money );
     // (2) Update 입금 , 빼기
-    @Update( "update trans set money = money - #{money} where name = #{name} " )
+    @Update( "update trans set money = money - #{money} where name = #{name} and money >= #{money}" )
     public boolean withdraw( String name , int money );
 }// class end
