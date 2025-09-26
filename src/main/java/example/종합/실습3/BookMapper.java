@@ -11,7 +11,7 @@ public interface BookMapper { // interface start
     @Insert( "insert into rentals(id , book_id , member) values( #{id} , #{book_id} , #{member} )" )
     public boolean bookRent(RentalsDto dto);
     // 1-2
-    @Update( "update books set stock = stock - 1 where id = #{id}" )
+    @Update( "update books set stock = stock - 1 where id = #{id} and stock > 0" )
     public boolean bookMinus(int id);
 
     // [2] 반납
