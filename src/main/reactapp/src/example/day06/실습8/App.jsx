@@ -20,8 +20,7 @@ export default function App( props ){
     return (
         <>        
         <BrowserRouter>
-            <h3> 루트 페이지 </h3>
-            <Header/>
+            <Header/>                       
             <Routes>
                 <Route path="/" element={ <HomePage /> } />
                 <Route path="/menu" element={ <MenuPage /> } />

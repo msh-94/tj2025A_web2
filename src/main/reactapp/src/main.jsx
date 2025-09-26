@@ -103,18 +103,18 @@ import Component13 from './example/day05/Component13.jsx';
 
 // day06
 // 실습8
-// import App from './example/day06/실습8/App.jsx';
-// import store, {per} from './example/day06/실습8/store/store.jsx';
-// import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
-// create.render(
-//   <Provider store={store}>
-//     <PersistGate loading={null} persistor={ per } >
-//       <App/>  
-//     </PersistGate>
-//   </Provider>
-// )
+import App from './example/day06/실습8/App.jsx';
+import store, {per} from './example/day06/실습8/store/store.jsx';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+create.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={ per } >
+      <App/>  
+    </PersistGate>
+  </Provider>
+)
 
 // day07
-import Component14 from './example/day07/Component14.jsx';
-create.render( <Component14 /> );
+// import Component14 from './example/day07/Component14.jsx';
+// create.render( <Component14 /> );

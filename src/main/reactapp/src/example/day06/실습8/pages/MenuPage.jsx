@@ -1,6 +1,10 @@
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { countAdd } from '../store/cartSlice'
+import Table from '@mui/joy/Table';
+import Button from '@mui/joy/Button';
+
+
 
 export default function MenuPage( props ){    
     const sample = [
@@ -22,14 +26,26 @@ export default function MenuPage( props ){
     }// func end
     return (
         <>
-        <h3> 제품메뉴 페이지 </h3>
-        <ul>
-            {
-                sample.map( (s) => {
-                    return <li key={s.id}> 제품명 : {s.name} 가격 : {s.price}원 <button onClick={ (e) => { shopping(s.id,s.name,s.price) }}> 담기 </button></li>
-                })
-            }
-        </ul>
+        <Table aria-label="basic table" style={{ width: '30%' }}>
+            <thead>
+                <tr>
+                    <th>제품명</th>
+                    <th>가격(원)</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    sample.map( ( s ) => {
+                        return <tr key={s.id}>
+                            <td>{s.name}</td>
+                            <td>{s.price}원</td>
+                            <td><Button onClick={ (e) => { shopping(s.id,s.name,s.price) }}>  장바구니에 담기 </Button></td>
+                        </tr>
+                    })
+                }
+            </tbody>
+        </Table>        
         </>
     )
 }// func end

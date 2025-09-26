@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux"
+import Table from '@mui/joy/Table';
+
 
 export default function CartPage( props ){
     const { count , cartInfo } = useSelector( (state) => state.cart )
@@ -15,15 +17,33 @@ export default function CartPage( props ){
     }// func end
     return (
         <>
-        <h3> 장바구니 페이지 </h3>
-        <div>     
-            <ul>
-                {cartInfo.map( ( c ) => {
-                    return <li key={c.id}>제품명 : {c.name} 가격 : {c.price}원 개수 {c.amount}개</li>                    
-                })}                
-            </ul>
-            <div> 총 개수 : <span> {count}개 </span> 총 금액 : <span> {totalPrice()}원 </span></div>            
-        </div>
+         <Table aria-label="basic table" style={{ width: '20%' }}>
+            <thead>
+                <tr>
+                    <th>제품명</th>
+                    <th>가격(원)</th>
+                    <th>갯수(개)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    cartInfo.map( (c) => {
+                        return <tr key={c.id} >
+                            <td>{c.name}</td>
+                            <td>{c.price}원</td>
+                            <td>{c.amount} 개</td>
+                        </tr>
+                    })
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>총 개수(개) : <span style={{color: 'red'}}>{count}</span> 개</th>                    
+                    <th>총 금액(원)</th>
+                    <td>{totalPrice()}원</td>
+                </tr>
+            </tfoot>
+         </Table>        
         </>
     )
 }// func end
