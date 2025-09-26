@@ -18,7 +18,7 @@ const cartSlice = createSlice( {
             // }// if end
 
             // 방법2
-            const found = false;
+            let found = false;
             state.cartInfo.forEach( (c) => {
                 if(c.id == action.payload.id){ c.amount += 1; found = true; }
             })

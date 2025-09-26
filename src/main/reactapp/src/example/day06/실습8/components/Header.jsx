@@ -16,9 +16,7 @@ export default function Header( props ){
         <List role="menubar" orientation="horizontal">
             <ListItem role="none">
             <ListItemButton
-                role="menuitem"
-                component="a"
-                href="#horizontal-list"
+                role="menuitem"                
                 aria-label="Home"
             >
                 <Link to="/"><Home /></Link>
@@ -26,13 +24,13 @@ export default function Header( props ){
             </ListItem>
             <ListDivider />
             <ListItem role="none">
-            <ListItemButton role="menuitem" component="a" href="#horizontal-list">
+            <ListItemButton role="menuitem" >
                 <Link to="/menu">메뉴</Link>                
             </ListItemButton>
             </ListItem>
             <ListDivider />
             <ListItem role="none">
-            <ListItemButton role="menuitem" component="a" href="#horizontal-list">
+            <ListItemButton role="menuitem" >
                 <Link to="/cart">장바구니</Link>
             </ListItemButton>
             </ListItem>            

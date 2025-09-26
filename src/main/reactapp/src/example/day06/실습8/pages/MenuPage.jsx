@@ -14,6 +14,7 @@ export default function MenuPage( props ){
     ]
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const shopping = (id , name ,price ) => {
         const obj = { id , name , price  }
         dispatch( countAdd(obj) );
@@ -40,7 +41,7 @@ export default function MenuPage( props ){
                         return <tr key={s.id}>
                             <td>{s.name}</td>
                             <td>{s.price}원</td>
-                            <td><Button onClick={ (e) => { shopping(s.id,s.name,s.price) }}>  장바구니에 담기 </Button></td>
+                            <td><Button variant="outlined" onClick={ () => { shopping(s.id,s.name,s.price) }}>  장바구니에 담기 </Button></td>
                         </tr>
                     })
                 }
