@@ -7,13 +7,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- XML 파일내 mybatis 라이브러리 설정 -->
 
-<!-- XML과 매핑할 인터페이스 설정 , [src] 이하 경로 시정 -->
+<!-- XML과 매핑할 인터페이스 설정 , [src->java] 이하 경로 시정 -->
 <!-- <mapper namespace="매핑할 인터페이스 파일 경로"> -->
 <mapper namespace="example.day13.XmlMapper">    <!-- mapper 시작 -->
 
     <!-- [1] 등록 -->
     <!-- <insert id="추상메소드명" parameterType="매개변수타입(클래스) 파일 경로"> -->
-    <insert id="save" parameterType="example.day13.StudentDto">
+    <insert id="save" parameterType="example.day13.StudentDto" useGeneratedKeys="true" keyProperty="sno">
         INSERT INTO student(name , kor , math) values( #{name} , #{kor} , #{math} )
     </insert>
 
@@ -22,5 +22,20 @@
     <select id="findAll" resultType="example.day13.StudentDto">
         SELECT * FROM student
     </select>
+
+    <!-- [3] 개별조회 -->
+    <select id="find" parameterType="int" resultType="example.day13.StudentDto">
+        SELECT * FROM student where sno = #{sno}
+    </select>
+
+    <!-- [4] 개별 학생 삭제 : 반환타입 설정하지않고 int 일경우에는 자동으로 삭제/수정/삽입 된 레코드수 반환 -->
+    <delete id="delete" parameterType="int">
+        delete from student where sno = #{sno}
+    </delete>
+
+    <!-- [5] 개별 학생 수정 -->
+    <update id="update" parameterType="example.day13.StudentDto">
+        update student set kor = #{kor} , math = #{math} where sno = #{sno}
+    </update>
 
 </mapper>   <!-- mapper 끝 -->
