@@ -50,4 +50,32 @@ public class XmlController { // class start
         return ResponseEntity.ok(result);
     }// func end
 
+    // [6-1] 특정한 국어점수 보다 이상인 학생 조회(어노테이션)
+    @GetMapping("/query1")
+    public ResponseEntity<List<StudentDto>> query1(@RequestParam int kor){
+        List<StudentDto> list = xmlMapper.query1(kor);
+        return ResponseEntity.ok(list);
+    }// func end
+
+    // [6-2] 특정한 국어점수 보다 이상인 학생 조회(XML)
+    @GetMapping("/query2")
+    public ResponseEntity<List<StudentDto>> query2(@RequestParam int kor){
+        List<StudentDto> list = xmlMapper.query2(kor);
+        return ResponseEntity.ok(list);
+    }// func end
+
+    // [7] 이름(포함된) 또는 수학점수(이상)로 검색
+    @GetMapping("/query3")
+    public ResponseEntity<List<StudentDto>> query3(@RequestParam String name , @RequestParam int math){
+        List<StudentDto> list = xmlMapper.query3(name, math);
+        return ResponseEntity.ok(list);
+    }// func end
+
+    // [8] 여러개 학생 등록
+    @PostMapping("/save")
+    public ResponseEntity< ? > saveAll(@RequestBody List<StudentDto> list){
+        int result = xmlMapper.saveAll(list);
+        return ResponseEntity.ok(result);
+    }// func end
+
 }// class end

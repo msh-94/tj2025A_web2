@@ -64,7 +64,7 @@
     <!-- concat( 문자열 , 문자열 ) : 문자열 연결 함수 -->
 
     <!-- [8] forEach 동적쿼리 -->
-    <insert id="saveAll" useGeneratedKeys="true" keyProperty="sno">
+    <insert id="saveAll" parameterType="list" useGeneratedKeys="true" keyProperty="sno">
         insert into student(name,kor,math) values
             <foreach collection="list" item="s" separator=",">
                 ( #{s.name} , #{s.kor} , #{s.math} )
