@@ -51,8 +51,8 @@ alter table employee add constraint employee_id primary key (id);
 alter table employee add constraint name unique( name );
 
 # [8] 제약조건 삭제
-# alter table 테이블명 drop primary key; -- pk삭제
-# alter table 테이블명 drop constraint 삭제할제약조건명; -- fk삭제
+# alter table 테이블명 drop primary key; -- pk삭제 pk1개일때
+# alter table 테이블명 drop constraint 삭제할제약조건명; -- fk삭제 pk 여러개일때
 alter table employee drop primary key;
 alter table employee drop constraint employee_id;
 
