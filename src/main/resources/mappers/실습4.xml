@@ -22,6 +22,5 @@
             <foreach collection="list" item="b" separator=",">
                 ( #{b.id} , #{b.title}, #{b.stock} )
             </foreach>
-        commit
     </insert>
 </mapper>

@@ -3,6 +3,7 @@ package example.종합.실습4;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service @RequiredArgsConstructor
@@ -26,6 +27,14 @@ public class BookService {// class start
 
     // 책 일괄 등록
     public List<Integer> bookAllAdd(List<BookDto> list){
-
-    }
+        int result = bookMapper.bookAllAdd(list);
+        if (result > 0){
+            List<Integer> bnoList = new ArrayList<>();
+            for (BookDto dto : list){
+                bnoList.add(dto.getId());
+            }// for end
+            return bnoList;
+        }// if end
+        return null;
+    }// func end
 }// class end

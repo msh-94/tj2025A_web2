@@ -23,4 +23,9 @@ public class BookController {// class start
         return ResponseEntity.ok(list);
     }// func end
     // 책 일괄 등록
+    @PostMapping("/all")
+    public ResponseEntity<?> bookAllAdd(@RequestBody List<BookDto> list){
+        List<Integer> result = bookService.bookAllAdd(list);
+        return ResponseEntity.ok(result);
+    }// func end
 }// class end
