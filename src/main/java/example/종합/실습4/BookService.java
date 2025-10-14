@@ -21,8 +21,8 @@ public class BookService {// class start
     }// func end
 
     // 대출 기록 조회
-    public List<RentalsDto> rentalPrint( String title ){
-        return bookMapper.rentalPrint(title);
+    public List<RentalsDto> rentalPrint( String member){
+        return bookMapper.rentalPrint(member);
     }// func end
 
     // 책 일괄 등록

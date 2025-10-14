@@ -18,8 +18,8 @@ public class BookController {// class start
     }// func end
     // 대출 기록 검색
     @GetMapping("")
-    public ResponseEntity<?> rentalPrint(@RequestParam String title){
-        List<RentalsDto> list = bookService.rentalPrint(title);
+    public ResponseEntity<?> rentalPrint(@RequestParam String member){
+        List<RentalsDto> list = bookService.rentalPrint(member);
         return ResponseEntity.ok(list);
     }// func end
     // 책 일괄 등록
