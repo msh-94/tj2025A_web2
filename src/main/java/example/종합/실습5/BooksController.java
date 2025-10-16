@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController @RequestMapping("/tbook")
 @RequiredArgsConstructor
@@ -38,10 +39,33 @@ public class BooksController { // class start
         String result = booksService.firstBook();
         return ResponseEntity.ok(result);
     }// func end
-    // 테스트
-    @GetMapping
-    public void get(){
-        System.out.println("booksService = " + booksService);
-    }
+
+    // [5] 대출기록 상세 뷰 생성
+    @PutMapping("/loan")
+    public ResponseEntity<?> loanAdd(){
+        int result = booksService.loanAdd();
+        return ResponseEntity.ok(result);
+    }// func end
+
+    // [6] 평균 재고보다 많은 재고를 가진 도서 뷰 생성
+    @PutMapping("/excellent")
+    public ResponseEntity<?> excellentAdd(){
+        int result = booksService.excellentAdd();
+        return ResponseEntity.ok(result);
+    }// func end
+
+    // [7] 대출기록 상세 뷰 조회
+    @GetMapping("/loan")
+    public ResponseEntity<?> getLoan(){
+        List<Map<String, Object>> list = booksService.getLoan();
+        return ResponseEntity.ok(list);
+    }// func end
+
+    // [8] 평균 재고보다 많은 재고를 가진 도서 뷰 조회
+    @GetMapping("/excellent")
+    public ResponseEntity<?> getExcellent(){
+        List<BooksDto> list = booksService.getExcellent();
+        return ResponseEntity.ok(list);
+    }// func end
 
 }// class end

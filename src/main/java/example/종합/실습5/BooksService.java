@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service @RequiredArgsConstructor
 public class BooksService { // class start
@@ -27,5 +28,25 @@ public class BooksService { // class start
     // [4] 가장많이 대출한 도서 조회
     public String firstBook(){
         return booksMapper.firstBook();
+    }// func end
+
+    // [5] 대출기록 상세 뷰 생성
+    public int loanAdd(){
+        return booksMapper.loanAdd();
+    }// func end
+
+    // [6] 평균 재고보다 많은 재고를 가진 도서 뷰 생성
+    public int excellentAdd(){
+        return booksMapper.excellentAdd();
+    }// func end
+
+    // [7] 대출기록 상세 뷰 조회
+    public List<Map<String, Object>> getLoan(){
+        return booksMapper.getLoan();
+    }// func end
+
+    // [8] 평균 재고보다 많은 재고를 가진 도서 뷰 조회
+    public List<BooksDto> getExcellent(){
+        return booksMapper.getExcellent();
     }// func end
 }// class end
