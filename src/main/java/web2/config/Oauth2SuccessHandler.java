@@ -16,6 +16,7 @@ import web2.servicce.JwtService;
 import web2.servicce.UserService;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -47,7 +48,13 @@ public class Oauth2SuccessHandler implements AuthenticationSuccessHandler { // c
         if (provider.equals("google")){
             uid = oauth2User.getAttribute("email"); // oauth2User.getAttribute("동의항목명")
             name = oauth2User.getAttribute("name");
-        }
+        }else if (provider.equals("kakao")){
+            // 카카오 동의항목(정보) profile_nickname , "kakao_account"
+            Map<String , Object> map = oauth2User.getAttribute("kakao_account");
+            Map<String , Object> profile = (Map<String, Object>) map.get("profile"); // 테스트 단계에서는 profile만 가능
+            uid = (String) profile.get("nickname"); // 계정 id는 동의항목의 권한이 없으므로 임의
+            name = (String) profile.get("nickname");
+        }// if end
 
         // [7] oauth2 정보를 데이터베이스 저장
         userService.oauth2UserSignUp(uid,name);
