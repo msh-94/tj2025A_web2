@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- XML 이란? 마크업 이용한 데이터 저장(설정)/전달(매핑)/교환(API) 프로그래밍언어 -->
+<!-- HTML : 마크업 이용한 웹페이지 마크업언어 -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- XML 파일내 mybatis 라이브러리 설정 -->
+
+<!-- XML과 매핑할 인터페이스 설정 , [src->java] 이하 경로 시정 -->
+<!-- <mapper namespace="매핑할 인터페이스 파일 경로"> -->
+<mapper namespace="example.day13.XmlMapper">    <!-- mapper 시작 -->
+
+    <!-- [1] 등록 -->
+    <!-- <insert id="추상메소드명" parameterType="매개변수타입(클래스) 파일 경로"> -->
+    <insert id="save" parameterType="example.day13.StudentDto" useGeneratedKeys="true" keyProperty="sno">
+        INSERT INTO student(name , kor , math) values( #{name} , #{kor} , #{math} )
+    </insert>
+
+    <!-- [2] 전체조회 -->
+    <!-- <select id="findAll" resultType="반환타입 파일경로"> -->
+    <select id="findAll" resultType="example.day13.StudentDto">
+        SELECT * FROM student
+    </select>
+
+    <!-- [3] 개별조회 -->
+    <select id="find" parameterType="int" resultType="example.day13.StudentDto">
+        SELECT * FROM student where sno = #{sno}
+    </select>
+
+    <!-- [4] 개별 학생 삭제 : 반환타입 설정하지않고 int 일경우에는 자동으로 삭제/수정/삽입 된 레코드수 반환 -->
+    <delete id="delete" parameterType="int">
+        delete from student where sno = #{sno}
+    </delete>
+
+    <!-- [5] 개별 학생 수정 -->
+    <update id="update" parameterType="example.day13.StudentDto">
+        update student set kor = #{kor} , math = #{math} where sno = #{sno}
+    </update>
+
+    <!-- [6] IF 동적쿼리1 -->
+    <select id="query2" parameterType="int" resultType="example.day13.StudentDto">
+        select * from student where 1=1
+            <if test="kor != null">
+                and kor >= #{ kor }
+            </if>
+    </select>
+
+    <!-- [7] IF 동적쿼리2 : parameterType 2개 이상일때 dto 묶거나 생략 -->
+    <select id="query3" resultType="example.day13.StudentDto">
+        select * from student
+        <where>
+            <!-- 만약에 name 값이 비어있지 않으면 조회 -->
+            <if test="name != null">
+                and name like concat( '%' , #{name} , '%' )
+            </if>
+            <!-- 만약에 math 값이 0이 아니면 조회 -->
+            <if test="math != 0">
+                and math >= #{math}
+            </if>
+        </where>
+    </select>
+    <!-- 필드명 like %값% : 필드내 값이 포함된 레코드 조회 -->
+    <!-- concat( 문자열 , 문자열 ) : 문자열 연결 함수 -->
+
+    <!-- [8] forEach 동적쿼리 -->
+    <insert id="saveAll" parameterType="list" useGeneratedKeys="true" keyProperty="sno">
+        insert into student(name,kor,math) values
+            <foreach collection="list" item="s" separator=",">
+                ( #{s.name} , #{s.kor} , #{s.math} )
+            </foreach>
+    </insert>
+    <!-- forEach collection="list" item="반복변수명(아무거나)" separator="반복되는 SQL 구분문자" -->
+
+</mapper>   <!-- mapper 끝 -->

@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // [1] 스프링 웹
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // [2] 룸북
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // [3] mysql jdbc
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // [4] websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // [5] Jsoup
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.21.2'
+    // [6] Selenium
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.35.0'
+    // [7] WebDriverManager( 셀레니움 브라우저 매니저 , 크롬 )
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '6.3.1'
+    // [8] MyBatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    // [9] AOP 관점지향 프로그래밍
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // [10] noSQL Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // [11] 비크립트( 암호화 )
+    implementation 'org.springframework.security:spring-security-crypto:6.4.4'
+    // [12] JWT 라이브러리
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    // [13] Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // [14] oauth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

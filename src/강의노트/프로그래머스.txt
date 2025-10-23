@@ -1,0 +1,50 @@
+1. [ SELECT ] 모든 레코드 조회하기
+https://school.programmers.co.kr/learn/courses/30/lessons/59034
+SELECT * FROM ANIMAL_INS ORDER BY ANIMAL_ID ASC;
+
+2. [ SELECT ] 인기있는 아이스크림
+https://school.programmers.co.kr/learn/courses/30/lessons/133024
+SELECT FLAVOR FROM FIRST_HALF ORDER BY TOTAL_ORDER DESC , SHIPMENT_ID ASC;
+
+3. [ SELECT ] 역순 정렬하기
+https://school.programmers.co.kr/learn/courses/30/lessons/59035
+SELECT NAME , DATETIME FROM ANIMAL_INS ORDER BY ANIMAL_ID DESC;
+
+4. [ SELECT ] 대장균들의 자식의 수 구하기
+https://school.programmers.co.kr/learn/courses/30/lessons/299305
+SELECT ED.ID , ( SELECT COUNT(*) FROM ECOLI_DATA WHERE PARENT_ID = ED.ID ) AS CHILD_COUNT
+ FROM ECOLI_DATA ED ORDER BY ED.ID ASC;
+
+5. [ SELECT ]  동물의 아이디와 이름
+https://school.programmers.co.kr/learn/courses/30/lessons/59403
+SELECT ANiMAL_ID , NAME from animal_ins order by animal_id asc;
+
+6. [ SELECT ] 과일로 만든 아이스크림 고르기
+https://school.programmers.co.kr/learn/courses/30/lessons/133025
+SELECT f.FLAVOR from FIRST_HALF f inner join icecream_info i on f.flavor = i.flavor
+ where i.INGREDIENT_TYPE = 'fruit_based' and f.total_order >= 3000 order by f.total_order desc;
+
+7. [ SELECT ] 강원도에 위치한 생산공장 목록 출력하기
+https://school.programmers.co.kr/learn/courses/30/lessons/131112
+SELECT FACTORY_ID , FACTORY_NAME , ADDRESS from FOOD_FACTORY where ADDRESS like "%강원도%"
+
+8. [ SELECT ] 즐겨찾기가 가장 많은 식당 정보 출력하기
+https://school.programmers.co.kr/learn/courses/30/lessons/131123
+SELECT FOOD_TYPE , REST_ID , REST_NAME , FAVORITES from REST_INFO WHERE (FOOD_TYPE, FAVORITES) IN
+ (SELECT FOOD_TYPE, MAX(FAVORITES) AS FAVORITES FROM REST_INFO GROUP BY FOOD_TYPE) order by food_type desc;
+
+9. [ SELECT ] 여러 기준으로 정렬하기
+https://school.programmers.co.kr/learn/courses/30/lessons/59404
+SELECT animal_id , name , datetime from animal_ins order by name asc , datetime desc ;
+
+10. [ SELECT ] 아픈 동물 찾기
+https://school.programmers.co.kr/learn/courses/30/lessons/59036
+SELECT animal_id , name from animal_ins where intake_condition = 'sick' order by animal_id asc
+
+11. [ SELECT ] 어린 동물 찾기
+https://school.programmers.co.kr/learn/courses/30/lessons/59037
+SELECT animal_id , name from animal_ins where intake_condition != 'aged' order by animal_id asc
+
+12. [ SELECT ] 상위 n개 레코드
+https://school.programmers.co.kr/learn/courses/30/lessons/59405
+SELECT name from animal_ins order by datetime asc limit 0,1

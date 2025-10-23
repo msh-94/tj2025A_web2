@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="example.종합.실습5.BooksMapper">
+    <!-- price 추가 -->
+    <update id="priceAdd">
+        alter table books add column price int
+    </update>
+    <!-- title 타입 longtext로 변경 -->
+    <update id="titleUpdate">
+        alter table books modify title longtext
+    </update>
+    <!-- 평균재고보다 많은 도서 조회 -->
+    <select id="getBooks" resultType="example.종합.실습5.BooksDto">
+        select * from books where stock > (select avg(stock) from books)
+    </select>
+    <!-- 가장많이 대출한 도서 조회 -->
+    <select id="firstBook" resultType="String">
+        select b.title , (select count(*) from rentals r where b.id = r.id) as total
+         from books b order by total desc limit 0,1
+    </select>
+    <!-- 대출기록 상세 뷰 생성 -->
+    <update id="loanAdd">
+        create or replace view loan as select b.id , b.title , b.stock , r.id as rid , r.member , r.rent_date, r.return_date from books b inner join rentals r
+        on b.id = r.book_id;
+    </update>
+    <!-- 평균 재고보다 많은 재고를 가진 도서 뷰 생성 -->
+    <update id="excellentAdd">
+        create or replace view excellent as select * from books where stock > (select avg(stock) from books)
+    </update>
+    <!-- 대출기록 상세 뷰 조회 -->
+    <select id="getLoan" resultType="map">
+        select * from loan;
+    </select>
+    <!-- 평균 재고보다 많은 재고를 가진 도서 뷰 조회 -->
+    <select id="getExcellent" resultType="example.종합.실습5.BooksDto">
+        select * from excellent
+    </select>
+</mapper>

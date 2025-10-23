@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="example.종합.실습4.BookMapper">
+    <!-- 단일 등록 -->
+    <insert id="bookAdd" parameterType="example.종합.실습4.BookDto" useGeneratedKeys="true" keyProperty="id">
+        insert into books( title , stock) values( #{title} , #{stock})
+    </insert>
+    <!-- 대출기록조회 -->
+    <select id="rentalPrint" parameterType="string" resultType="example.종합.실습4.RentalsDto">
+        select * from rentals where 1=1
+            <if test="member != null">
+                and member = #{member}
+            </if>
+    </select>
+    <!-- 일괄 등록 -->
+    <insert id="bookAllAdd" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        insert into books( title, stock) values
+            <foreach collection="list" item="b" separator=",">
+                ( #{b.title}, #{b.stock} )
+            </foreach>
+    </insert>
+</mapper>
