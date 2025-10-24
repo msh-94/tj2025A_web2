@@ -11,7 +11,10 @@ import web2.model.dto.UserDto;
 import web2.servicce.JwtService;
 import web2.servicce.UserService;
 
-@RestController @RequestMapping("/user")
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController { // class start
     private final UserService userService;
@@ -21,7 +24,7 @@ public class UserController { // class start
      * 회원가입
      *
      * @method post
-     * @url http://localhost:8080/user/signup
+     * @url http://localhost:8080/api/user/signup
      * @test { "uid" : "qwe" , "upwd" : "qwe" , "uname" : "유재석" , "uphone" : "010-2222-3333" , "urole" : "USER" }
      * @param userDto @RequestBody
      * @return uno
@@ -62,7 +65,7 @@ public class UserController { // class start
      * + 쿠키 : 클라이언트 브라우저 의 임시 저장소 , 세션:서버 / 쿠키:클라이언트
      *
      * @method post
-     * @url http://localhost:8080/user/login
+     * @url http://localhost:8080/api/user/login
      * @test { "uid" : "qwe" , "upwd" : "qwe" }
      * @param userDto @RequestBody
      * @return dto
@@ -94,7 +97,7 @@ public class UserController { // class start
      * 쿠키에서 로그인한 회원의 아이디 가져와서 조회하기
      *
      * @method get
-     * @url http://localhost:8080/user/myinfo
+     * @url http://localhost:8080/api/user/myinfo
      * @param request ( uid )
      * @return dto
      */
@@ -132,7 +135,7 @@ public class UserController { // class start
      * 쿠키에서 해당하는 쿠키명 덮어쓰기로 null 저장
      *
      * @method get
-     * @url http://localhost:8080/user/logout
+     * @url http://localhost:8080/api/user/logout
      * @param response
      * @return boolean
      */
@@ -150,6 +153,28 @@ public class UserController { // class start
         // 쿠키 : 클라이언트에 저장하는 임시 저장소 이므로 서버가 종료되도 유지된다
 
         return ResponseEntity.ok(true);
+    }// func end
+
+    /**
+     * 권한 반환 기능
+     *
+     * @method get
+     * @url http://localhost:8080/api/user/check
+     * @param token
+     * @return Map
+     */
+    @GetMapping("/check")
+    public ResponseEntity<?> checkToken(@CookieValue( value = "loginUser",required = false) String token ){
+        Map<String,Object> map = new HashMap<>();
+        if (token != null && jwtService.checkToken(token)){ // 쿠키내 토큰이 유효하면
+            String urole = jwtService.getUrole(token);
+            map.put("isAuth",true);
+            map.put("urole",urole);
+            return ResponseEntity.ok(map); // 로그인했으면
+        }else {
+            map.put("isAuth",false);
+            return ResponseEntity.status(403).body(map); // 로그인 안했으면
+        }// if end
     }// func end
 
 }// class end

@@ -120,5 +120,8 @@ import Component13 from './example/day05/Component13.jsx';
 // create.render( <Component14 /> );
 
 // day08
-import Component15 from './example/day08/Component15.jsx';
-create.render( <Component15 /> );
+// import Component15 from './example/day08/Component15.jsx';
+// create.render( <Component15 /> );
+
+import App from './web2/App.jsx';
+create.render( <App /> );
