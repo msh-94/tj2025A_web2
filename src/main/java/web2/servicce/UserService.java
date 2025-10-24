@@ -56,7 +56,7 @@ public class UserService { // class start
         if (userDto == null){ // 기존 회원정보 없음
             UserDto oauthUser = new UserDto();
             oauthUser.setUid(uid);
-            oauthUser.setUpwd(null); // 타사 이므로 없음
+            oauthUser.setUpwd("1234"); // 타사 이므로 없음
             oauthUser.setUname(name);
             oauthUser.setUrole("USER"); // 추후에 일반유저와 OAUTH 유저 권한 구분 가능
             userMapper.singUp(oauthUser);

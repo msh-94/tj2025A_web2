@@ -33,7 +33,7 @@ export default function Header( props ){
         <>
         <div>
             <nav>
-
+                { user ? <>로그인</> : <>비로그인</>}
                 { user ? 
                 <>
                     {/* 로그인 */}

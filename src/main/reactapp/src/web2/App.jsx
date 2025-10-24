@@ -1,6 +1,7 @@
 import { BrowserRouter as Router , Routes , Route , Link } from 'react-router-dom'; 
 import RoleRoute from './components/RoleRoute';
 import Header from './components/Header';
+import Login from './pages/user/login';
 export default function App( props ){
 
     return(
@@ -12,7 +13,7 @@ export default function App( props ){
                 {/* 1. 누구나 접근 가능 */}
                 <Route path='/' element={ <h1> 메인페이지 </h1> } />
                 <Route path='/signup' element={ <h1> 회원가입 </h1>} />
-                <Route path='/login' element={ <h1> 로그인 </h1>} />
+                <Route path='/login' element={ <Login /> } />
                 {/* 2. USER 또는 그외 접근 가능 */}
                 <Route element={ <RoleRoute roles={ ["USER" , "ADMIN"] } /> }>
                     <Route path='/user/info' element={ <h1> 마이페이지 </h1> } />
