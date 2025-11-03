@@ -2,8 +2,10 @@ package example2.day01;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,11 +29,38 @@ public class ExamService {
         return entityList;
     }// func end
 
-    // 3. U , 수정
-    //public ExamEntity update(ExamEntity examEntity){
-    //
-    //}
+    // 3-1 U , 특정한 엔티티 수정 , 권장 [X]
+    public ExamEntity put(ExamEntity examEntity){
+        // 1. 수정할 엔티티 매개변수로 받는다, pk 포함
+        // 2. save( 수정할엔티티 )
+            // 만약에 지정한 엔티티에 pk가 없으면 생성
+            // 만약에 지정한 엔티티에 pk가 존재하면 수정
+        ExamEntity updateEntity = examRepository.save( examEntity );
+        return updateEntity;
+    }// func end
 
-    // 4. D
+    // 3-2 U , 특정한 엔티티 수정 , 권장[O] , 주의할점 : 엔티티를 setter 하면 자동으로 DB도 변경된다
+    @Transactional // 트랜잭션이란? 여러개 sql 에서 하나라도 실패이면 모두 실패
+    public ExamEntity put2(ExamEntity examEntity){
+        // 1. 수정할 엔티티 조회한다 , findAll() , findById( pk번호 )
+        Optional<ExamEntity> optional = examRepository.findById(examEntity.getCol1());
+        // 2. Optional 이란? 자바에서 자주 발생하는 nullPointer 예외를 감싼/포장 클래스
+        // 즉] null 값에 대한 안전하게 유효성 기능 제공한다
+        if ( optional.isPresent() ){ // .isPresent() : 본문이 존재하는지 검사
+            ExamEntity entity = optional.get(); // .get() : 만약에 결과에 entity가 존재하면 entity 꺼내기
+            entity.setCol2(examEntity.getCol2()); // setter 이용한 엔티티 수정
+            entity.setCol3(examEntity.getCol3()); // setter 이용한 엔티티 수정 , update 자동 처리
+            return entity;
+        }// if end
+        return examEntity;
+    }// func end
+
+    // 4. D , 특정한 엔티티 삭제
+    public boolean delete(int col1){
+        // 1. 삭제할 pk번호를 받는다
+        // 2. deleteById( pk번호 )
+        examRepository.deleteById(col1);
+        return true;
+    }// func end
 
 }// class end
