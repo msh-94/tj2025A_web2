@@ -48,12 +48,17 @@ public class GoodsService {
 
     // [4] 개별삭제
     public boolean delete(int gno){
-        goodsRepository.deleteById(gno);
-        Optional<GoodsEntity> optional = goodsRepository.findById(gno);
-        if (optional.isPresent()){
-            return false;
+        if ( goodsRepository.existsById(gno)){ // .existsById( pk값 ) : pk값이 존재하면 true 없으면 false
+            goodsRepository.deleteById(gno);
+            return true;
         }// if end
-        return true;
+        return false;
+        //goodsRepository.deleteById(gno);
+        //Optional<GoodsEntity> optional = goodsRepository.findById(gno);
+        //if (optional.isPresent()){
+        //    return false;
+        //}// if end
+        //return true;
     }// func end
 
     // [5] 개별수정
@@ -65,10 +70,8 @@ public class GoodsService {
             goodsEntity.setGdesc(dto.getGdesc());
             goodsEntity.setGdesc(dto.getGdesc());
             return goodsEntity.toDto();
-        }else {
-            GoodsEntity goodsEntity = goodsRepository.save(dto.toEntity());
-            return goodsEntity.toDto();
         }// if end
+        return dto;
     }// func end
 
 }// class end
