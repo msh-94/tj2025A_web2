@@ -41,6 +41,7 @@ public class TodoController {
     }// func end
 
     // [5] 2-5
+    @GetMapping("/page2") // http://localhost:8080/api/todo/page2?keyword=책&page=1&size=3
     public ResponseEntity<?> page2(
             @RequestParam String keyword ,
             @RequestParam int page ,
