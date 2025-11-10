@@ -1,0 +1,38 @@
+package example2.day04.model.entity;
+
+import example2.day04.model.dto.TodoDto;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity // JPA 해당 엔티티를 테이블 매핑
+@Table( name = "todo" ) // 테이블명 정의
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
+public class TodoEntity extends BaseTime {
+    // 1. 테이블 속성 설계
+    @Id @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private int id; // pk
+    @Column( nullable = false , length = 100 ) // + 테이블 속성 옵션
+    private String title; // 제목
+    @Column( columnDefinition = "longtext" ) // + 테이블 속성 옵션
+    private String content; // 내용
+    @Column( columnDefinition = "boolean default false" )
+    private boolean done; // 실행(체크)여부
+
+    // 2. 참조 관계 설계
+
+    // 3. Entity --> Dto 변환
+    public TodoDto toDto(){
+        return TodoDto.builder() // new 대신에 builder 사용
+                .id( this.id )
+                .content( this.content )
+                .title( this.title )
+                .done( this.done )
+                .createDate( this.getCreateDate().toString() )
+                .updateDate( this.getUpdateDate().toString() )
+                .build();
+    }
+
+}// class end
