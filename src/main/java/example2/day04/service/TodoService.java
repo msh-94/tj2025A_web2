@@ -12,11 +12,50 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service @RequiredArgsConstructor
 @Transactional
 public class TodoService {
     private final TodoRepository todoRepository;
+
+    // 전체조회
+    public List<TodoDto> findAll(){
+        return todoRepository.findAll()
+                .stream().map(TodoEntity::toDto).toList();
+    }// func end
+
+    // 개별삭제
+    public boolean delete(int id){
+        if(todoRepository.existsById(id)){
+            todoRepository.deleteById(id);
+            return true;
+        }// if end
+        return false;
+    }// func end
+
+    // 개별조회
+    public TodoDto findById(int id){
+        Optional<TodoEntity> optional = todoRepository.findById(id);
+        if (optional.isPresent()) {
+            TodoEntity entity = optional.get();
+            return entity.toDto();
+        }// if end
+        return null;
+    }// func end
+
+    // 개별 수정
+    public TodoDto update(TodoDto dto){
+        Optional<TodoEntity> optional = todoRepository.findById(dto.getId());
+        if (optional.isPresent()){
+            TodoEntity entity = optional.get();
+            entity.setTitle(dto.getTitle());
+            entity.setContent(dto.getContent());
+            entity.setDone(dto.isDone()); // boolean setter 는 isXXX
+            return entity.toDto();
+        }// if end
+        return null;
+    }// func end
 
     // [1] TodoRepository 2-1 , 3-1
     public List<TodoDto> query1( String title ){
